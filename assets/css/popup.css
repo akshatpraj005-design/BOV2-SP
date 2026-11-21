@@ -1,0 +1,149 @@
+:root {
+  --popup-red: #c90000;
+  --popup-blue: #087df2;
+}
+
+.cookie-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+  padding: 20px;
+  background: rgba(0, 0, 0, .68);
+}
+
+.cookie-modal {
+  position: relative;
+  width: min(440px, 100%);
+  padding: 28px 30px 26px;
+  color: #242424;
+  background: #fff;
+  border: 1px solid #d5d5d5;
+  border-top: 6px solid var(--popup-red);
+  border-radius: 8px;
+  box-shadow: 0 18px 48px rgba(0, 0, 0, .35);
+  font-family: Arial, Helvetica, sans-serif;
+  animation: cookie-modal-rise .35s ease-out both;
+}
+
+.cookie-illustration {
+  display: none;
+}
+
+.cookie-modal-content {
+  min-width: 0;
+}
+
+.cookie-modal-content::before {
+  display: block;
+  margin-bottom: 20px;
+  color: var(--popup-red);
+  content: "AMERICAN SPORTSBOOK";
+  font-size: 30px;
+  font-weight: 800;
+  letter-spacing: .08em;
+  line-height: 1;
+}
+
+.cookie-modal-content h2 {
+  display: inline-block;
+  margin: 0 0 10px;
+  padding: 5px 8px;
+  color: #fff;
+  background: var(--popup-blue);
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.cookie-modal-content p {
+  margin: 0 0 20px;
+  color: #555;
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+.cookie-modal-close {
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  padding: 0;
+  color: #555;
+  background: transparent;
+  border: 0;
+  font: 28px/1 Arial, Helvetica, sans-serif;
+  cursor: pointer;
+}
+
+.cookie-modal-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.cookie-button {
+  flex: 1;
+  min-height: 46px;
+  padding: 10px 14px;
+  border: 1px solid #b8b8b8;
+  border-radius: 6px;
+  font: 700 15px/1.2 Arial, Helvetica, sans-serif;
+  cursor: pointer;
+  transition: background-color .18s ease, box-shadow .18s ease;
+}
+
+.cookie-button-accept {
+  color: #fff;
+  background: var(--popup-red);
+  border-color: var(--popup-red);
+}
+
+.cookie-button-decline {
+  color: #0759aa;
+  background: #fff;
+  border-color: var(--popup-blue);
+}
+
+.cookie-button-accept:hover {
+  background: #ad0000;
+  box-shadow: 0 4px 12px rgba(201, 0, 0, .22);
+}
+
+.cookie-button-decline:hover {
+  color: #fff;
+  background: var(--popup-blue);
+}
+
+.cookie-modal-backdrop--betfinal .cookie-modal {
+  border-top-color: var(--popup-red);
+}
+
+@keyframes cookie-modal-rise {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 520px) {
+  .cookie-modal {
+    padding: 26px 22px 22px;
+  }
+
+  .cookie-modal-content::before {
+    font-size: 27px;
+  }
+
+  .cookie-modal-actions {
+    flex-direction: column;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cookie-modal {
+    animation: none;
+  }
+
+  .cookie-button {
+    transition: none;
+  }
+}
